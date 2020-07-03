@@ -1,0 +1,26 @@
+{% extends 'base-generic.html' %}
+
+{% block title %}<title>Local Library - Authors</title>{% endblock %}
+
+{%block content %}
+    <h1>Author List</h1>
+    {% if author_list %}
+        <ul>            
+            {% for author in author_list %}
+                <li>
+                    <a href = '{{author.get_absolute_url}}'>{{author}}</a>     
+                    {% if author.date_of_birth is not None %}
+                    {{author.date_of_birth}}
+                {% endif %} - 
+                {% if author.date_of_death is not None %}
+                {{author.date_of_death}}
+                {% endif %}
+                </li>
+            {% endfor %}               
+        </ul>
+    {% else %}
+        <p> There are no authors in the library</p>
+    {% endif %}
+{% endblock %}
+
+<!-- "{{ author.get_absolute_url }}" -->

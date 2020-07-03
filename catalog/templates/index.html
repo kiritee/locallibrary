@@ -1,0 +1,10 @@
+{% extends "base-generic.html" %}
+
+{% block content %}
+<h1>Local Library Home</h1>
+<p>Welcome to Local Library. A website developed by <em>Kiritee Konark Mishra</em>!</p>
+<h2>Dynamic Content</h2>
+<p>The library currently has <strong>{{num_instances}} copies</strong> of <strong>{{num_books}} books</strong>, written
+    by <strong>{{num_authors}} authors</strong>.<br>
+    At the moment, <strong>{{num_available}} copies</strong> are available for loan</p>
+{% endblock content %}

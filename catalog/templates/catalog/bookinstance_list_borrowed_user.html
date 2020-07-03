@@ -1,0 +1,20 @@
+{% extends 'base-generic.html' %}
+
+
+{% block content %}
+    <h1>Borrowed Books</h1>
+    
+    {% if user.bookinstance_set.all.count > 0 %}
+        <ul>
+            {% for copy in user.bookinstance_set.all  %}
+                <li class="{% if copy.is_overdue %}text-danger{% endif %}">
+                    <a href="{{copy.book.get_absolute_url}}">{{copy.book.title}}</a> ({{copy.due_back}})
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p> No books borrowed at this time.</p>
+    {% endif %}
+        
+{% endblock content %}
+    

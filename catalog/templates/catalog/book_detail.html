@@ -1,0 +1,34 @@
+{% extends 'base-generic.html' %}
+
+{% block title %}<title>Local Library - {{ book.title }}</title>{% endblock %}
+
+{%block content %}
+    <h1>{{ book.title }}</h1>
+    <p><strong>Author : <a href = "{{book.author.get_absolute_url}}"> {{book.author}} </a></strong></p>
+    <p><strong>Summary:</strong><br>
+        {{book.summary}}
+    </p>
+    <br>
+    <p><strong>Imprint: </strong> {{book.imprint}}</p>
+    <p><strong>ISBN: </strong> {{book.isbn}}</p>
+    <p><strong>Language: </strong>{{book.language}}</p>
+    <p><strong>Genres:</strong>{{book.display_genre}}</p>
+
+    <div style="margin-left:20px;margin-top:20px">
+        <h4>Copies</h4>
+        
+        {% for copy in book.bookinstance_set.all %}
+            <hr>
+            <p class = "{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %} text-danger{% else %} text-warning{% endif %}">
+                {{copy.get_status_display}}
+            </p>
+            
+            {% if copy.status == 'o' %}
+                <p><strong>Due to be returned: </strong>{{copy.due_back}}</p>
+            {% endif %}
+            <p class = 'text-muted'><strong>Id:</strong>{{copy.id}}</p>
+        {% endfor %}
+    </div>
+            
+
+{% endblock %}

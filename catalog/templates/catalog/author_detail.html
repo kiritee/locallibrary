@@ -1,0 +1,27 @@
+{% extends 'base-generic.html' %}
+
+{% block title %}<title>Local Library - {{ author }}</title>{% endblock %}
+
+{%block content %}
+    <h1>{{ author }}</h1>
+    <p class  = 'text-muted'> 
+    {% if author.date_of_birth is not None %}
+        {{author.date_of_birth}}
+    {% endif %} - 
+    {% if author.date_of_death is not None %}
+    {{author.date_of_death}}
+    {% endif %}
+    </p>
+
+    <div style="margin-left:20px;margin-top:20px">
+        <h4>Books</h4>
+        
+        {% for book in author.book_set.all %}
+            <hr>
+            <a href = "{{ book.get_absolute_url }}"> <strong>{{book.title}} </strong></a> ( {{book.bookinstance_set.all.count}}) <br>
+            {{book.summary}}
+        {% endfor %}
+    </div>
+            
+
+{% endblock %}
