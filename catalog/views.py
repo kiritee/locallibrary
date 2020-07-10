@@ -8,8 +8,9 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.decorators import permission_required
 from django.shortcuts import get_object_or_404
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.http import HttpResponseRedirect
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 import datetime
 
 def index(request):
@@ -104,3 +105,29 @@ def renew_book_librarian(request,pk):
     }
     return render(request, 'catalog/book_renew_librarian.html', context)
  
+
+class AuthorCreate(CreateView):
+    model = Author
+    fields = '__all__'
+
+class AuthorUpdate(UpdateView):
+    model = Author
+    fields = '__all__'
+
+class AuthorDelete(DeleteView):
+    model = Author
+    fields = '__all__'
+    success_url = reverse_lazy('authors')
+
+class BookCreate(CreateView):
+    model = Book
+    fields = '__all__'
+
+class BookUpdate(UpdateView):
+    model = Book
+    fields = '__all__'
+
+class BookDelete(DeleteView):
+    model = Book
+    fields = '__all__'
+    success_url = reverse_lazy('books')

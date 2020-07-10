@@ -1,0 +1,16 @@
+{% extends 'base-generic.html' %}
+
+{% block content %}
+    <form action='' method='POST'>
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <input type="submit" value = 'Submit'>
+    </form>
+    
+    {% if book %}
+        <a class ='btn btn-secondary' href="{%url 'book-delete' book.pk %}" >Delete</a>        
+    {% endif %}
+        
+{% endblock content %}

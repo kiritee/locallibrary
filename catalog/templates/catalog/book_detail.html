@@ -5,6 +5,7 @@
 {%block content %}
     <h1>{{ book.title }}</h1>
     <p><strong>Author : <a href = "{{book.author.get_absolute_url}}"> {{book.author}} </a></strong></p>
+    <div class="col-sm-3"><a href = "{% url 'book-update' book.pk %}" class='btn btn-primary'> Edit</a></div>
     <p><strong>Summary:</strong><br>
         {{book.summary}}
     </p>

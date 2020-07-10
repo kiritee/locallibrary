@@ -4,6 +4,7 @@
 
 {%block content %}
     <h1>{{ author }}</h1>
+    <div class="col-sm-3"><a href = "{% url 'author-update' author.pk %}" class='btn btn-primary'> Edit</a></div>
     <p class  = 'text-muted'> 
     {% if author.date_of_birth is not None %}
         {{author.date_of_birth}}
